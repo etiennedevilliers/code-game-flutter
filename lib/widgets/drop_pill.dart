@@ -45,6 +45,7 @@ class _DropPillState extends State<DropPill> {
         if (widget.parent.getChildren().contains(node)) return false;
         if (widget.parent == node) return false;
         if (widget.parent.nextNode == node) return false;
+        if (node.nextNodes().contains(widget.parent)) return false;
 
         print('Draggable accept');
         setState(() {

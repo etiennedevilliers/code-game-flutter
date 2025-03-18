@@ -12,4 +12,15 @@ abstract class Node {
       return <Node>[];
     }
   }
+
+  List<Node> nextNodes() {
+    if (nextNode != null) {
+      return <Node>[
+        nextNode!,
+        ...nextNode!.nextNodes(),
+      ];
+    } else {
+      return <Node>[];
+    }
+  }
 }
