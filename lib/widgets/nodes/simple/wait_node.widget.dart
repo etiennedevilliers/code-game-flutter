@@ -17,27 +17,20 @@ class WaitNodeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Draggable<Node>(
-      feedback: Material(
-        color: Colors.transparent,
-        child: WaitNodeWidget(node: node,)
-      ),
-      data: node,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          NodeHeader(
-            title: Row(
-              children: [
-                Text('Wait'),
-                ValuePill.int(value: node.time)
-              ],
-            ),
-            color: Colors.blue
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        NodeHeader(
+          title: Row(
+            children: [
+              Text('Wait'),
+              ValuePill.int(value: node.time)
+            ],
           ),
-        ],
-      ),
+          color: Colors.blue
+        ),
+      ],
     );
   }
 }

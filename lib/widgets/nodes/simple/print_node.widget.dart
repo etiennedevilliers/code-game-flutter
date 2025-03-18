@@ -17,27 +17,20 @@ class PrintNodeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Draggable<Node>(
-      feedback: Material(
-        color: Colors.transparent,
-        child: PrintNodeWidget(node: node,)
-      ),
-      data: node,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          NodeHeader(
-            title: Row(
-              children: [
-                Text('Print'),
-                ValuePill.string(value: node.value)
-              ],
-            ),
-            color: Colors.blue
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        NodeHeader(
+          title: Row(
+            children: [
+              Text('Print'),
+              ValuePill.string(value: node.value)
+            ],
           ),
-        ],
-      ),
+          color: Colors.blue
+        ),
+      ],
     );
   }
 }

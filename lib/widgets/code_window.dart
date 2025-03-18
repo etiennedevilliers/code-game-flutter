@@ -5,6 +5,7 @@ import 'package:puzzle_game/code/simple/print.node.dart';
 import 'package:puzzle_game/code/simple/wait.node.dart';
 import 'package:puzzle_game/widgets/node_pallet.dart';
 import 'package:puzzle_game/widgets/nodes/node.factory.dart';
+import 'package:puzzle_game/widgets/nodes/node_header.dart';
 
 class CodeWindow extends StatelessWidget {
   const CodeWindow({super.key});
@@ -23,15 +24,25 @@ class CodeWindow extends StatelessWidget {
           height: double.infinity,
         ),
         SingleChildScrollView(
-          child: NodeFactory.buildRootNode(RootNode(
-            nextNode: LoopNode(
-              child: PrintNode(
-                value: 'Hello World',
-                nextNode: WaitNode(time: 100)
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              NodeHeader(
+                title: Text('Entry Point'),
+                color: Colors.yellow
               ),
-              nextNode: PrintNode(value: 'This will never run')
-            ),
-          )),
+              NodeFactory.buildRootNode(RootNode(
+                nextNode: LoopNode(
+                  child: PrintNode(
+                    value: 'Hello World',
+                    nextNode: WaitNode(time: 100)
+                  ),
+                  nextNode: PrintNode(value: 'This will never run')
+                ),
+              ))
+            ],
+          ),
         ),
       ],
     );

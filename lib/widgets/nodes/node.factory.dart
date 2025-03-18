@@ -10,6 +10,7 @@ import 'package:puzzle_game/widgets/nodes/root_node.widget.dart';
 import 'package:puzzle_game/widgets/nodes/simple/print_node.widget.dart';
 import 'package:puzzle_game/widgets/nodes/simple/wait_node.widget.dart';
 
+
 class NodeFactory {
   static Widget _pickNode(Node node) {
     switch (node) {
@@ -31,24 +32,35 @@ class NodeFactory {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (node is! RootNode) DropPill(),
         _pickNode(node),
+        DropPill(),
         _buildNextNode(node)
       ],
     );
   }
 
-  static Widget _buildNextNode(Node parent) {
-    if (parent.nextNode == null) { return DropPill(); }
-
+  static Widget _constructNextNode(Node node) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        DropPill(),
-        _pickNode(parent.nextNode!),
-        _buildNextNode(parent.nextNode!)
-      ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _pickNode(node),
+          DropPill(),
+          _buildNextNode(node)
+        ],
+      );
+  }
+
+  static Widget _buildNextNode(Node parent) {
+    if (parent.nextNode == null) { return Container(); }
+
+    return Draggable<Node>(
+      data: parent.nextNode,
+      feedback: Material(
+        color: Colors.transparent,
+        child: _constructNextNode(parent.nextNode!),
+      ),
+      child: _constructNextNode(parent.nextNode!),
     );
   }
 }

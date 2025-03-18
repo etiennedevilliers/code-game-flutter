@@ -17,44 +17,37 @@ class LoopNodeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Draggable<Node>(
-      feedback: Material(
-        color: Colors.transparent,
-        child: LoopNodeWidget(node: node,),
-      ),
-      data: node,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          NodeHeader(
-            title: Text('Loop'),
-            color: Colors.orange,
-            width: 70,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        NodeHeader(
+          title: Text('Loop'),
+          color: Colors.orange,
+          width: 70,
+        ),
+        IntrinsicHeight(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 10,
+                color: Colors.orange,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 1),
+                child: NodeFactory.buildRootNode(RootNode(
+                  nextNode: node.child
+                )),
+              ),
+            ],
           ),
-          IntrinsicHeight(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 10,
-                  color: Colors.orange,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 1),
-                  child: NodeFactory.buildRootNode(RootNode(
-                    nextNode: node.child
-                  )),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.orange,
-            width: 70,
-            height: 30,
-          ),
-        ],
-      ),
+        ),
+        Container(
+          color: Colors.orange,
+          width: 70,
+          height: 30,
+        ),
+      ],
     );
   }
 }
