@@ -10,7 +10,6 @@ import 'package:puzzle_game/widgets/nodes/root_node.widget.dart';
 import 'package:puzzle_game/widgets/nodes/simple/print_node.widget.dart';
 import 'package:puzzle_game/widgets/nodes/simple/wait_node.widget.dart';
 
-
 class NodeFactory {
   static Widget _pickNode(Node node) {
     switch (node) {
@@ -33,7 +32,7 @@ class NodeFactory {
       mainAxisSize: MainAxisSize.min,
       children: [
         _pickNode(node),
-        DropPill(),
+        DropPill(parent: node,),
         _buildNextNode(node)
       ],
     );
@@ -45,7 +44,7 @@ class NodeFactory {
         mainAxisSize: MainAxisSize.min,
         children: [
           _pickNode(node),
-          DropPill(),
+          DropPill(parent: node,),
           _buildNextNode(node)
         ],
       );
@@ -55,7 +54,7 @@ class NodeFactory {
     if (parent.nextNode == null) { return Container(); }
 
     return Draggable<Node>(
-      data: parent.nextNode,
+      data: parent.nextNode!,
       feedback: Material(
         color: Colors.transparent,
         child: _constructNextNode(parent.nextNode!),
