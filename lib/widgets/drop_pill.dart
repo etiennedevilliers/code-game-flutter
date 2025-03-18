@@ -37,31 +37,14 @@ class _DropPillState extends State<DropPill> {
         );
       },
       onWillAcceptWithDetails: (data) {
-        if (data.data == null) {
-          print('data.data == null');
-          return false;
-        }
-        if (data.data is! Node) {
-          print('data.data is! Node');
-          return false;
-        }
+        if (data.data == null) return false;
+        if (data.data is! Node) return false;
         
         Node node = data.data as Node;
 
-        if (widget.parent.getChildren().contains(node)) {
-          print('widget.parent.getChildrenAndNext().contains(node)');
-          return false;
-        }
-
-        if (widget.parent == node) {
-          print('widget.parent == node');
-          return false;
-        }
-
-        if (widget.parent.nextNode == node) {
-          print('widget.parent.nextNode == node');
-          return false;
-        }
+        if (widget.parent.getChildren().contains(node)) return false;
+        if (widget.parent == node) return false;
+        if (widget.parent.nextNode == node) return false;
 
         print('Draggable accept');
         setState(() {
