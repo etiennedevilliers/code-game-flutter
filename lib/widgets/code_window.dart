@@ -23,15 +23,14 @@ class CodeWindow extends StatelessWidget {
           height: double.infinity,
         ),
         SingleChildScrollView(
-          child: NodeFactory.build(RootNode(
-            children: [
-              LoopNode(
-                children: [
-                  PrintNode(value: 'Hello World'),
-                  WaitNode(time: 100)
-                ]
-              )
-            ]
+          child: NodeFactory.buildRootNode(RootNode(
+            nextNode: LoopNode(
+              child: PrintNode(
+                value: 'Hello World',
+                nextNode: WaitNode(time: 100)
+              ),
+              nextNode: PrintNode(value: 'This will never run')
+            ),
           )),
         ),
       ],

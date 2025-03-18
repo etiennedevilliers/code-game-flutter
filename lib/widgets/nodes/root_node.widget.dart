@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:puzzle_game/code/root.node.dart';
-import 'package:puzzle_game/widgets/drop_pill.dart';
-import 'package:puzzle_game/widgets/nodes/node.factory.dart';
 import 'package:puzzle_game/widgets/nodes/node_header.dart';
 
 class RootNodeWidget extends StatelessWidget {
@@ -19,8 +17,7 @@ class RootNodeWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        NodeHeader(title: Text('Entry Point'), color: Colors.yellow),
-        NodeFactory.buildList(node.children),
+        NodeHeader(title: Text('Root Node'), color: Colors.yellow),
       ],
     );
   }

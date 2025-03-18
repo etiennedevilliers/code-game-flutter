@@ -1,7 +1,7 @@
 import 'package:puzzle_game/code/node.dart';
 
 class LoopNode extends Node {
-  final List<Node> children;
+  final Node? child;
 
-  LoopNode({required this.children});
+  LoopNode({ this.child, super.nextNode });
 }

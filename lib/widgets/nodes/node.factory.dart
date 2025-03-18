@@ -26,26 +26,28 @@ class NodeFactory {
     }
   }
 
-  static Widget build(Node node) {
+  static Widget buildRootNode(Node node) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
+        if (node is! RootNode) DropPill(),
         _pickNode(node),
-        DropPill()
+        _buildNextNode(node)
       ],
     );
   }
 
-  static Widget buildList(List<Node> nodes) {
-    if (nodes.isEmpty) return DropPill();
+  static Widget _buildNextNode(Node parent) {
+    if (parent.nextNode == null) { return DropPill(); }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         DropPill(),
-        ...nodes.map(build)
+        _pickNode(parent.nextNode!),
+        _buildNextNode(parent.nextNode!)
       ],
     );
   }

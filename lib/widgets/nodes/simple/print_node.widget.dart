@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:puzzle_game/code/node.dart';
 import 'package:puzzle_game/code/simple/print.node.dart';
+import 'package:puzzle_game/widgets/nodes/node.factory.dart';
 import 'package:puzzle_game/widgets/nodes/node_header.dart';
 import 'package:puzzle_game/widgets/value_pill.dart';
 
@@ -22,14 +23,20 @@ class PrintNodeWidget extends StatelessWidget {
         child: PrintNodeWidget(node: node,)
       ),
       data: node,
-      child: NodeHeader(
-        title: Row(
-          children: [
-            Text('Print'),
-            ValuePill.string(value: node.value)
-          ],
-        ),
-        color: Colors.blue
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          NodeHeader(
+            title: Row(
+              children: [
+                Text('Print'),
+                ValuePill.string(value: node.value)
+              ],
+            ),
+            color: Colors.blue
+          ),
+        ],
       ),
     );
   }
